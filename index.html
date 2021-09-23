@@ -4,21 +4,49 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- css -->
+  <link rel="stylesheet" href="style.css">
+  
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gemunu+Libre:wght@200;300;400;500&display=swap" rel="stylesheet">
+  
   <title>Document</title>
+
+
 </head>
 <body>
-  <div id="dica"></div>
+  <div class="container">
+    <div id="dica"></div>
 
-	<div id="containerRes2"></div>
-	<div id="containerRes"></div>
-
-	<input type="text" id="resposta" maxlength="1" placeholder="coloque apenas 1 letra">
-  <button onclick="start()" >Start</button>
-
-  <button onclick="filtro()">Lupa</button>
+    <div id="containerRes2"></div>
+    <div id="containerRes"></div>
+  
+    <div class="input-group mb-3">
+      <span class="input-group-text" id="basic-addon1">coloque apenas 1 letra</span>
+      <input type="text" id="resposta" class="form-control" aria-label="Username" aria-describedby="basic-addon1">
+    </div>
+  
+  
+    <div class="btns">
+      <button onClick="window.location.reload()" class="btn btn-primary">Start</button>
+  
+      <button onclick="filtro()" class="btn btn-success">Lupa</button>
+    </div>
+  
+    <p id="pontos">Seus Pontos:</p>
+  </div>
 
   <script src="banco.js"></script>
   <script src="main.js"></script>
 
+  <!-- Bootstrap CSS -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-W8fXfP3gkOKtndU4JGtKDvXbO53Wy8SZCQHczT5FMiiqmQfUpWbYdTil/SxwZgAN" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.min.js" integrity="sha384-skAcpIdS7UcVUC05LJ9Dxay8AXcDYfBJqt1CJ85S/CFujBsIzCIv+l9liuYLaMQ/" crossorigin="anonymous"></script>
 </body>
 </html>

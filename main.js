@@ -1,7 +1,9 @@
 let cont = document.querySelector('#containerRes');
 let dica = document.querySelector('#dica');
+let pontos = document.querySelector('#pontos');
 cont.innerHTML = '';
 dica.innerHTML = '';
+pontos.innerHTML = 'Seus Pontos: ';
 
 
 window.document.querySelector('body').addEventListener('keydown', (e) =>
@@ -9,12 +11,14 @@ window.document.querySelector('body').addEventListener('keydown', (e) =>
     if(e.which === 13) filtro();
 });
 
+let ponto = 0;
+let verifcPonto
 
 let tamanhoBD = bancoPalavras.length
 let nAleatorio = Math.floor(Math.random() * tamanhoBD)
 
 
-let pergunta = bancoPalavras[nAleatorio].id;
+pergunta = bancoPalavras[nAleatorio].id;
 pergunta.trim();
 
 let perg = pergunta;
@@ -32,39 +36,62 @@ dica.innerHTML = bancoPalavras[nAleatorio].dica;
 
 // Filtro
 function filtro(){
+  let resposta = document.querySelector('#resposta').value;
+  let teste = false;
   banco.filter( (v, i) => {
-    let resposta = document.querySelector('#resposta').value;
-
     if(v.toUpperCase() == resposta.toUpperCase()){
-      // arrayObj.push({[i]:v})
-      arrayObj.push(
-      {
-        id: i,
-        l: v
-      });
-    };
+      teste = true
+      verifc(v, i)
+    }
+
+  });
+  if(teste){
+    substitui();
+  }else{
+    alert("Errado!");
+    document.querySelector('#resposta').value = '';
+    if(ponto != 0 || ponto > 0){
+      ponto = ponto - 1
+      pontos.innerText = `Seus Pontos: ${ponto}`
+    }else{
+      ponto = 0
+      pontos.innerText = `Seus Pontos: ${ponto}`
+    }
+  }
+}
+
+
+function verifc(v, i){
+  arrayObj.push({
+      id: i,
+      l: v
   });
 
-  substitui();
+  ponto = ponto + 1
+  pontos.innerText = `Seus Pontos: ${ponto}`
+
+  if( ponto >= pergunta.split('').length )
+  {
+      dica.innerHTML = '<h1>FIM de JOGO</h1>';
+  }
 }
 
 
 //Substitu 
 function substitui(){
-  //Campo de variáveis:
   let teste = subst2.split('')
 
   for(let i = 0; i < arrayObj.length; i++)
   {
-    //pegar o valor a ser alterado
+
     let res = arrayObj[i].id;
     let res2 = arrayObj[i].l;
 
-    //Alterar o valor que tem na mascara com o id do nosso ArrayObj
+
     teste[res] = res2
     let sla = teste.join("")
     
-    //-> ultima parte: Fazer com que ele seja renderizado na tela
+
     cont.innerHTML = ''
     cont.innerHTML = sla;
   }
